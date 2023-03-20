@@ -4,7 +4,7 @@ import "./config/mongoose-config.js";
 import users_Routes from "./routers/users-api.js";
 import products_Routes from "./routers/products-api.js";
 const app = express();
-const port = 2000;
+const port = 2002;
 
 app.use(cors());
 app.use(express.json());
