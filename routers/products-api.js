@@ -1,26 +1,24 @@
 import express from "express";
+import { nanoid } from "nanoid";
 import cloudinary from "../config/cloudinary-config.js";
-import { getProducts } from "../services/prod-service.js";
+import { addProduct, getProducts } from "../services/prod-service.js";
+import upload from "../util/multer.js";
 
 const products_Routes = express.Router();
 
-const res = cloudinary.v2.uploader.upload(
-  "https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
-  { public_id: "olympic_flag" }
-);
-
-res
-  .then((data) => {
-    console.log(data);
-    console.log(data.secure_url);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 products_Routes.get("/products", async (req, res) => {
   const result = await getProducts();
-  result ? res.status(200).send(result) : res.send("asd");
+  result ? res.status(200).json(result) : res.send("asd");
+});
+
+products_Routes.post("/product", upload.single("file"), async (req, res) => {
+  let product = JSON.parse(req.body.product);
+  const respond = await cloudinary.v2.uploader.upload(`${req.file.path}`, {
+    folder: "",
+  });
+  product = await { ...product, image: respond?.secure_url, id: nanoid() };
+  const result = await addProduct(product);
+  res.status(200).send(result);
 });
 
 export default products_Routes;
