@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    _id: mongoose.Schema.Types.ObjectId,
-    userName: {
+    username: {
       type: String,
       unique: true,
       require: true,
@@ -21,7 +20,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    registerDate: Date,
+    registerDate: String,
   },
   { collection: "users" }
 );
