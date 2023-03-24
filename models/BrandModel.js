@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { nanoid } from "nanoid";
 
-const categotySchema = new mongoose.Schema(
+const brandSchema = new mongoose.Schema(
   {
     _id: {
       type: String,
@@ -10,9 +10,10 @@ const categotySchema = new mongoose.Schema(
     name: String,
     image: String,
   },
-  { collection: "categories" }
+  {
+    collection: "brands",
+  }
 );
 
-const CategoryModel = mongoose.model("category", categotySchema);
-
-export default CategoryModel;
+const BrandModel = mongoose.model("brand", brandSchema);
+export default BrandModel;
