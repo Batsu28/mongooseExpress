@@ -4,15 +4,15 @@ import { nanoid } from "nanoid";
 const categotySchema = new mongoose.Schema(
   {
     _id: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       default: nanoid(),
     },
     name: String,
     image: String,
   },
-  { collection: "categories" }
+  { collection: "Categories" }
 );
 
-const CategoryModel = mongoose.model("category", categotySchema);
+const CategoryModel = mongoose.model("Category", categotySchema);
 
 export default CategoryModel;

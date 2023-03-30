@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
@@ -8,7 +8,8 @@ const productSchema = new mongoose.Schema(
     sale: Number,
     description: String,
     spec: Array,
-    category: String,
+    category: { type: Schema.Types.ObjectId, ref: "Category" },
+    brand: { type: Schema.Types.ObjectId, ref: "Brands" },
     image: String,
     id: String,
     createdDate: String,

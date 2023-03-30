@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const mongodb_connection =
-  "mongodb+srv://Batsu:panda0328@cluster0.drwdfkp.mongodb.net/ecommerce";
+dotenv.config();
+
 mongoose
-  .connect(mongodb_connection)
+  .connect(process.env.MONGOOSE_CONNECTION_URL)
   .then(() => {
     console.log("connected");
   })

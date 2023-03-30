@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 const brandSchema = new mongoose.Schema(
   {
     _id: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       default: nanoid(),
     },
     name: String,
